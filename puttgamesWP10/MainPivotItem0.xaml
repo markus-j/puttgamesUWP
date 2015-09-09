@@ -1,0 +1,527 @@
+﻿<UserControl
+    x:Class="puttgamesWP10.MainPivotItem0"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:puttgamesWP10"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="640"
+    d:DesignWidth="480">
+    
+    <UserControl.Resources>
+        <local:DateToStringConverter x:Key="Converter"/>
+        <local:PlaceholderConverter x:Key="PlaceholderConverter"/>
+        <local:InvertedPlaceholderConverter x:Key="InvertedPlaceholderConverter"/>
+        <local:RatingConverter x:Key="RatingConverter"/>
+    </UserControl.Resources>
+    
+    <ScrollViewer x:Name="scrollViewerOne">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="0,0,0,24">
+                <TextBlock 
+                    Margin="0,0,0,0"
+                    Text="Summary" 
+                    Style="{ThemeResource SubtitleTextBlockStyle}"
+                    Foreground="{ThemeResource SystemAccentColor}"
+                    />
+                <TextBlock
+                    Grid.Row="0" 
+                    Text="Six putts from six distances. Distance equals points. Bonuses for the first and last in a row and for a perfect row." 
+                    TextWrapping="Wrap" 
+                    Style="{ThemeResource BaseTextBlockStyle}" />
+            </StackPanel>
+            <!-- <ProgressBar 
+                Name="progressBar0" 
+                IsIndeterminate="True" 
+                Height="10" 
+                Grid.Row="0"
+                VerticalAlignment="Bottom" 
+                Visibility="Collapsed"/>-->
+            <TextBlock
+                Grid.Row="1"
+                Text="Top scores" 
+                Style="{ThemeResource SubtitleTextBlockStyle}" 
+                Foreground="{ThemeResource SystemAccentColor}"
+                />
+            <TextBlock 
+                Margin="0,50,0,50"
+                Grid.Row="2"
+                TextAlignment="Center"
+                Text="no scores"
+                Visibility="{Binding Results.Count, Converter={StaticResource PlaceholderConverter}}"
+                Style="{ThemeResource SubtitleTextBlockStyle }" />
+
+            <ListView
+                Tapped="TopResultsListView_Tapped"
+                x:Name="TopResultsListView"
+                Grid.Row="2"
+                ItemsSource="{Binding Results}"
+                MaxHeight="128"
+                ScrollViewer.VerticalScrollMode="Disabled"
+                SelectionMode="None"
+                ContinuumNavigationTransitionInfo.ExitElementContainer="False">
+
+
+
+                <ListView.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+                </ListView.Background>
+
+                <FlyoutBase.AttachedFlyout>
+                    <PickerFlyout/>
+                </FlyoutBase.AttachedFlyout>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.3*" MaxWidth="80"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"  />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                TextAlignment="Left"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="0"
+                                Text="{Binding Score}"
+                                TextWrapping="NoWrap"
+                                Pivot.SlideInAnimationGroup="GroupOne"
+                                CommonNavigationTransitionInfo.IsStaggerElement="False"
+                                Style="{ThemeResource TitleTextBlockStyle }"
+                                Margin="0,0,19,0"/>
+                            <TextBlock
+                                TextTrimming="CharacterEllipsis"
+                                TextAlignment="Left"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Bottom"
+                                Grid.Column="1"
+                                Text="{Binding ResultPlayerName}"
+                                TextWrapping="NoWrap"
+                                Pivot.SlideInAnimationGroup="GroupTwo"
+                                CommonNavigationTransitionInfo.IsStaggerElement="False"
+                                Style="{ThemeResource TitleTextBlockStyle }"
+                                Margin="0,0,19,0"/>
+                            <TextBlock
+                                TextAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="2"
+                                Text="{Binding ResultDateTime, Converter={StaticResource Converter}}"
+                                TextWrapping="NoWrap"
+                                Pivot.SlideInAnimationGroup="GroupThree"
+                                CommonNavigationTransitionInfo.IsStaggerElement="False"
+                                Style="{ThemeResource BodyTextBlockStyle}"
+                                Margin="0,0,19,0"/>
+                        </Grid>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Grid.Row="3">
+
+                <StackPanel.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+                </StackPanel.Background>
+
+                <TextBlock 
+                    Margin="0,24,0,0"
+                    Text="Rules" 
+                    Style="{ThemeResource SubtitleTextBlockStyle}" 
+                    Foreground="{ThemeResource SystemAccentColor}" />
+                <TextBlock 
+                    Text="Mark six distances from 10 feet to 35 feet in 5 feet intervals. Throw six putts from each distance. A succesful putt gives points equal to the distance it was thrown, for example 10 points from 10 feet."
+                    TextWrapping="Wrap" 
+                    Style="{ThemeResource BodyTextBlockStyle}" 
+                    Margin="0,0,0,12"/>
+                <TextBlock 
+                    Text="Bonus points"
+                    TextWrapping="Wrap" 
+                    Style="{ThemeResource SubtitleTextBlockStyle}"
+                    Foreground="{ThemeResource SystemAccentColor}"
+                    FontSize="18"
+                    Margin="0,0,0,6" />
+
+
+                <TextBlock 
+                    Text="First and last putts from a distance give bonus points, 5 from the first four distances and 10 from the farthest two distances. Completing a series of six putts from one distance gives an extra bonus equal to the distance."
+                    TextWrapping="Wrap" 
+                    Style="{ThemeResource BodyTextBlockStyle}" 
+                    Margin="0,0,0,12" />
+                <TextBlock 
+                    Text="If the shortest distances are easy for you, putt them from different stances, e.g. straddle or kneeing."
+                    TextWrapping="Wrap" 
+                    Style="{ThemeResource BodyTextBlockStyle}" 
+                    Margin="0,0,0,12" />
+                <TextBlock 
+                    Text="Mark your result by ticking the checkboxes. Tap the row header to check the whole row at once."
+                    TextWrapping="Wrap" 
+                    Style="{ThemeResource BodyTextBlockStyle}" 
+                    Margin="0,0,0,12" />
+                <TextBlock 
+                    Text="The points distribution is shown in the table below."
+                    TextWrapping="Wrap" 
+                    Style="{ThemeResource BodyTextBlockStyle}" 
+                    Margin="0,0,0,24" />
+
+                <Grid x:Name="pointTable" Margin="0,0,0,0" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border BorderBrush="Gray" BorderThickness="1"  Grid.Row="0" Grid.Column="0" >
+                        <TextBlock Text="dist" Style="{ThemeResource BaseTextBlockStyle}" Margin="6,6,6,6" Foreground="{ThemeResource SystemAccentColor}" />
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Grid.Row="0" Grid.Column="1">
+                        <TextBlock Text="1" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="2" >
+                        <TextBlock Text="2" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="3" >
+                        <TextBlock Text="3" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="4" >
+                        <TextBlock Text="4" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="5" >
+                        <TextBlock Text="5" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="6" >
+                        <TextBlock Text="6" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="7" >
+                        <TextBlock Text="bonus" Style="{ThemeResource BaseTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="8" >
+                        <TextBlock Text="total" Style="{ThemeResource BaseTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="0" >
+                        <TextBlock Text="10'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center"  Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="1" >
+                        <TextBlock Text="15" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="2" >
+                        <TextBlock Text="10" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="3" >
+                        <TextBlock Text="10" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="4" >
+                        <TextBlock Text="10" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="5"  >
+                        <TextBlock Text="10" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="6" >
+                        <TextBlock Text="15" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="7" >
+                        <TextBlock Text="10" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="8" >
+                        <TextBlock Text="80" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="2" Grid.Column="0" >
+                        <TextBlock Text="15'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center"  Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="2" Grid.Column="1" >
+                        <TextBlock Text="20" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="2" Grid.Column="2" >
+                        <TextBlock Text="15" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="2" Grid.Column="3" >
+                        <TextBlock Text="15" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="2" Grid.Column="4" >
+                        <TextBlock Text="15" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="2" Grid.Column="5" >
+                        <TextBlock Text="15" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="2" Grid.Column="6" >
+                        <TextBlock Text="20" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="2" Grid.Column="7" >
+                        <TextBlock Text="15" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="2" Grid.Column="8" >
+                        <TextBlock Text="115" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="3" Grid.Column="0">
+                        <TextBlock Text="20'"  Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="3" Grid.Column="1" >
+                        <TextBlock Text="25" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="3" Grid.Column="2" >
+                        <TextBlock Text="20" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="3" Grid.Column="3" >
+                        <TextBlock Text="20" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="3" Grid.Column="4" >
+                        <TextBlock Text="20" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="3" Grid.Column="5" >
+                        <TextBlock Text="20" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="3" Grid.Column="6" >
+                        <TextBlock Text="25" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="3" Grid.Column="7" >
+                        <TextBlock Text="20" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="3" Grid.Column="8" >
+                        <TextBlock Text="150" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="4" Grid.Column="0" >
+                        <TextBlock Text="25'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="4" Grid.Column="1" >
+                        <TextBlock Text="30" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="4" Grid.Column="2" >
+                        <TextBlock Text="25" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="4" Grid.Column="3" >
+                        <TextBlock Text="25" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="4" Grid.Column="4" >
+                        <TextBlock Text="25" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="4" Grid.Column="5" >
+                        <TextBlock Text="25" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="4" Grid.Column="6" >
+                        <TextBlock Text="30" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="4" Grid.Column="7" >
+                        <TextBlock Text="25" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="4" Grid.Column="8" >
+                        <TextBlock Text="185" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="5" Grid.Column="0" >
+                        <TextBlock Text="30'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="5" Grid.Column="1" >
+                        <TextBlock Text="40" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="5" Grid.Column="2" >
+                        <TextBlock Text="30" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="5" Grid.Column="3" >
+                        <TextBlock Text="30" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="5" Grid.Column="4" >
+                        <TextBlock Text="30" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="5" Grid.Column="5" >
+                        <TextBlock Text="30" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="5" Grid.Column="6" >
+                        <TextBlock Text="40" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="5" Grid.Column="7" >
+                        <TextBlock Text="30" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right" />
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="5" Grid.Column="8" >
+                        <TextBlock Text="230" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="6" Grid.Column="0" >
+                        <TextBlock Text="35'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="6" Grid.Column="1" >
+                        <TextBlock Text="45" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="6" Grid.Column="2" >
+                        <TextBlock Text="35" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="6" Grid.Column="3" >
+                        <TextBlock Text="35" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="6" Grid.Column="4" >
+                        <TextBlock Text="35" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="6" Grid.Column="5" >
+                        <TextBlock Text="35" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="6" Grid.Column="6" >
+                        <TextBlock Text="45" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="6" Grid.Column="7" >
+                        <TextBlock Text="35" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="6" Grid.Column="8" >
+                        <TextBlock Text="265" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="8" >
+                        <TextBlock Text="Total" Style="{ThemeResource BaseTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Right" Foreground="{ThemeResource SystemAccentColor}" />
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="7" Grid.Column="8" >
+                        <TextBlock Text="1025" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" />
+                    </Border>
+                </Grid>
+
+                <TextBlock 
+                            Text="Distances in meters"
+                            TextWrapping="Wrap" 
+                            Style="{ThemeResource BaseTextBlockStyle}" 
+                            Margin="0,24,0,12" />
+
+                <Grid x:Name="ftToMetersTable" Margin="0,0,0,24" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border BorderBrush="Gray" BorderThickness="1"  Grid.Row="0" Grid.Column="0" >
+                        <TextBlock Text="10'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1"  Grid.Row="0" Grid.Column="1">
+                        <TextBlock Text="15'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="2" >
+                        <TextBlock Text="20'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="3" >
+                        <TextBlock Text="25'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="4" >
+                        <TextBlock Text="30'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="0" Grid.Column="5" >
+                        <TextBlock Text="35'" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center" Foreground="{ThemeResource SystemAccentColor}" FontWeight="Bold"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="0" >
+                        <TextBlock Text="3m" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6" TextAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="1" >
+                        <TextBlock Text="4.6m" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="2" >
+                        <TextBlock Text="6.1m" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="3" >
+                        <TextBlock Text="7.6m" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="4" >
+                        <TextBlock Text="9.1m" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Row="1" Grid.Column="5"  >
+                        <TextBlock Text="10.7m" Style="{ThemeResource BodyTextBlockStyle}" Margin="6,6,6,6"/>
+                    </Border>
+                </Grid>
+
+                <TextBlock 
+                    Text="Skill levels" 
+                    Style="{ThemeResource SubtitleTextBlockStyle}" 
+                    Foreground="{ThemeResource SystemAccentColor}"
+                    Margin="0,0,0,0" />
+
+                <TextBlock 
+                                Text="200" 
+                                Style="{ThemeResource BaseTextBlockStyle}" Foreground="Orange" FontWeight="Bold"
+                                Margin="0,0,0,0" />
+                <TextBlock 
+                                Text="Beginner. PuttRating up to 780."
+                                TextWrapping="Wrap" 
+                                Style="{ThemeResource BodyTextBlockStyle}" 
+                                Margin="0,0,0,12" />
+                <TextBlock 
+                                Text="400"
+                                TextWrapping="Wrap" 
+                                Style="{ThemeResource BaseTextBlockStyle}" Foreground="Cyan" FontWeight="Bold"
+                                Margin="0,0,0,0" />
+                <TextBlock
+                                Text="Intermediate. Getting the touch for putting. PuttRating up to 840."
+                                TextWrapping="Wrap" 
+                                Style="{ThemeResource BodyTextBlockStyle}" 
+                                Margin="0,0,0,12" />
+                <TextBlock 
+                                Text="600"
+                                TextWrapping="Wrap" 
+                                Style="{ThemeResource BaseTextBlockStyle}" Foreground="LightGreen" FontWeight="Bold"
+                                Margin="0,0,0,0" />
+                <TextBlock
+                                Text="Advanced. The last two distances are your biggest opponent? PuttRating up to 940."
+                                TextWrapping="Wrap" 
+                                Style="{ThemeResource BodyTextBlockStyle}" 
+                                Margin="0,0,0,12" />
+                <TextBlock 
+                                Text="800"
+                                TextWrapping="Wrap" 
+                                Style="{ThemeResource BaseTextBlockStyle}" Foreground="LimeGreen" FontWeight="Bold"
+                                Margin="0,0,0,0" />
+                <TextBlock  
+                                Text="Professional. Superb putting skills! Can't miss more than four to five long putts. PuttRating up to 1020."
+                                TextWrapping="Wrap" 
+                                Style="{ThemeResource BodyTextBlockStyle}" 
+                                Margin="0,0,0,12" />
+                <TextBlock 
+                                Text="945"
+                                TextWrapping="Wrap" 
+                                Style="{ThemeResource BaseTextBlockStyle}" Foreground="HotPink" FontWeight="Bold"
+                                Margin="0,0,0,0" />
+                <TextBlock  
+                                Text="Amazing! You really need to master your putter and your nerves! PuttRating 1100."
+                                TextWrapping="Wrap" 
+                                Style="{ThemeResource BodyTextBlockStyle}" 
+                                Margin="0,0,0,90" />
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

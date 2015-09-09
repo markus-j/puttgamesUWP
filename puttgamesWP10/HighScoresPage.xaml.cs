@@ -67,6 +67,14 @@ namespace puttgamesWP10
                 }
                 Debug.WriteLine("HiScores Loaded: counter: " + counter);
             }
+            if (scoresListView.Items.Count == 0)
+            {
+                SelectionModeAppBarButton.IsEnabled = false;
+            }
+            else
+            {
+                SelectionModeAppBarButton.IsEnabled = true;
+            }
             Debug.WriteLine("HSP_Loaded ");
         } 
 
@@ -184,6 +192,11 @@ namespace puttgamesWP10
                     affectedPlayers.Add(playerNameToRemove);
                 }
             }
+            if(scoresListView.Items.Count == 0)
+            {
+                SelectionModeAppBarButton.IsEnabled = false;
+            }
+
             RecalculateRatings(affectedPlayers);
 
             Debug.WriteLine("Starting to save all data to json");

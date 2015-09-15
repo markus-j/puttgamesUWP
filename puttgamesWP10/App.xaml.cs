@@ -77,6 +77,7 @@ namespace puttgamesWP10
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
+                rootFrame.Navigated += OnNavigated;
 
                 // Associate the frame with a SuspensionManager key.
                 SuspensionManager.RegisterFrame(rootFrame, "AppFrame");

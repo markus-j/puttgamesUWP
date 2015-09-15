@@ -348,21 +348,16 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>40042MarkusJaakola.Puttgames</MainPackageIdentityName>
+    <MainPackageIdentityName>40042MarkusJaakola.PuttGamesUniversalBeta</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>Putt games</ReservedName>
-      <ReservedName>PuttGames</ReservedName>
-      <ReservedName>Disc Putt Games</ReservedName>
-      <ReservedName>DiscPutting</ReservedName>
-      <ReservedName>DiscPutter</ReservedName>
-      <ReservedName>DiscPutt Master</ReservedName>
-      <ReservedName>Putt Games Pro</ReservedName>
-      <ReservedName>Putt Games Free</ReservedName>
+      <ReservedName>Putt Games Universal Beta</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>40042MarkusJaakola.Disctape</MainPackageIdentityName>
+    <MainPackageIdentityName>40042MarkusJaakola.DisctapeUniversalBeta</MainPackageIdentityName>
     <MainPackageIdentityName>40042MarkusJaakola.GymClock</MainPackageIdentityName>
+    <MainPackageIdentityName>40042MarkusJaakola.Puttgames</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGGZNMNB" />
+  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGH5X8M8" />
 </StoreAssociation>

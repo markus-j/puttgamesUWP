@@ -84,7 +84,7 @@ namespace puttgamesWP10
         /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
         /// a dictionary of state preserved by this page during an earlier
         /// session.  The state will be null the first time a page is visited.</param>
-        private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             //DEBUG only
             #region debug
@@ -113,6 +113,14 @@ namespace puttgamesWP10
             {
                 buyBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 purchasedLbl.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            }
+
+            //fetch price from store and set it to priceLbl
+            ListingInformation listingInfo = await CurrentApp.LoadListingInformationAsync();
+            if(listingInfo.ProductListings.Count > 0)
+            {
+                ProductListing proPackListing = listingInfo.ProductListings.Values.ElementAt(0);
+                priceLbl.Text = proPackListing.FormattedPrice;
             }
         }
 

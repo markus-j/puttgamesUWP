@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="40042MarkusJaakola.PuttGamesUniversalBeta" Publisher="CN=3454720D-AA98-4C58-9B5C-0A79F4AB7440" Version="2.0.0.0" />
+  <Identity Name="40042MarkusJaakola.PuttGamesUniversalBeta" Publisher="CN=3454720D-AA98-4C58-9B5C-0A79F4AB7440" Version="2.0.1.0" />
   <mp:PhoneIdentity PhoneProductId="eea34f25-5a6e-45cb-9530-e80fa8745ea4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Putt Games Universal Beta</DisplayName>

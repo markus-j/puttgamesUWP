@@ -117,13 +117,11 @@ namespace puttgamesWP10
 
         #endregion
 
-        // TODO reviewapp -link does not work in win 10 store
+        // works well in UWP in Win 10, 8.1 version in Win 10 this does not work
         private async void SendLove_Button_Click(object sender, RoutedEventArgs e)
         {
-            Uri linkUri = Windows.ApplicationModel.Store.CurrentApp.LinkUri;
-            //Guid appId = Windows.ApplicationModel.Store.CurrentApp.AppId;
-            //await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + appId));
-            await Windows.System.Launcher.LaunchUriAsync(linkUri);
+            Guid appId = Windows.ApplicationModel.Store.CurrentApp.AppId;
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + appId));
         }
 
         private void SendFeedback_Button_Click(object sender, RoutedEventArgs e)

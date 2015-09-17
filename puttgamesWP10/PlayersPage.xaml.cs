@@ -24,13 +24,8 @@ using Windows.Data.Json;
 using Windows.Storage;
 
 
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
-
 namespace puttgamesWP10
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class PlayersPage : Page
     {
         private List<string> gameModes_ = new List<string>();
@@ -325,6 +320,7 @@ namespace puttgamesWP10
             }
         }
 
+        // long tap opens delete option
         private void playersListView_Holding(object sender, HoldingRoutedEventArgs e)
         {
             FrameworkElement senderElement = sender as FrameworkElement;
@@ -340,6 +336,7 @@ namespace puttgamesWP10
             e.Handled = true;
         }
 
+        // delete click handler
         private void MenuFlyoutDelete_Click(object sender, RoutedEventArgs e)
         {
             var datacontext = (e.OriginalSource as FrameworkElement).DataContext;

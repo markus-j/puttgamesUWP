@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
 using Windows.Phone.UI.Input;
 
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+// User Control representing player's page in game mode 100*10
 
 namespace puttgamesWP10
 {

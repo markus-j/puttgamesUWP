@@ -21,13 +21,9 @@ using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Windows.Data.Json;
 
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace puttgamesWP10
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MXXVGamePage : Page
     {
         private const string EXIT_CONFIRMATION_TEXT = "Results are not saved.";

@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
 
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+// User Control for 1025 game page
 
 namespace puttgamesWP10
 {

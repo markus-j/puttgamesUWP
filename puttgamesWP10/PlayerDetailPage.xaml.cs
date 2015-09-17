@@ -272,6 +272,7 @@ namespace puttgamesWP10
             }
         }
 
+        // returns skill level for a score in some game mode
         private string GetSkillLevelString(double score, int gameMode)
         {
             if (gameMode == 0)

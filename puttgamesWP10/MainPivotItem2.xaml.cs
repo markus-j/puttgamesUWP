@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using puttgamesWP10.Common;
 
 
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+// User Control for Abo game page
 
 namespace puttgamesWP10
 {

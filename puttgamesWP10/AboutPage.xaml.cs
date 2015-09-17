@@ -17,13 +17,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace puttgamesWP10
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class AboutPage : Page
     {
         private NavigationHelper navigationHelper;
@@ -47,7 +43,7 @@ namespace puttgamesWP10
                                         Windows.ApplicationModel.Package.Current.Id.Version.Revision);
             
             versionLbl.Text = "Version: " + appVersion;
-            message_body = "Feedback on Putt Games version " + appVersion;
+            message_body = "\n\nFeedback on Putt Games version " + appVersion;
         }
 
         /// <summary>
@@ -121,10 +117,13 @@ namespace puttgamesWP10
 
         #endregion
 
+        // TODO reviewapp -link does not work in win 10 store
         private async void SendLove_Button_Click(object sender, RoutedEventArgs e)
         {
-            Guid appId = Windows.ApplicationModel.Store.CurrentApp.AppId;
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + appId));
+            Uri linkUri = Windows.ApplicationModel.Store.CurrentApp.LinkUri;
+            //Guid appId = Windows.ApplicationModel.Store.CurrentApp.AppId;
+            //await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + appId));
+            await Windows.System.Launcher.LaunchUriAsync(linkUri);
         }
 
         private void SendFeedback_Button_Click(object sender, RoutedEventArgs e)
@@ -134,6 +133,8 @@ namespace puttgamesWP10
             ComposeEmail(DEVELOPER_EMAIL_ADDRESS, message_body, MESSAGE_SUBJECT);
         }
 
+        // create an email message from email address, message body and subject
+        // then call async emailManager to show the new email UI
         private async void ComposeEmail(string emailAddress, string messageBody, string messageSubject)
         {
             var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();

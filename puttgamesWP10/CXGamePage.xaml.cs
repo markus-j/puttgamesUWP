@@ -23,13 +23,9 @@ using Windows.Data.Json;
 
 using System.Globalization;
 
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace puttgamesWP10
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class CXGamePage : Page
     {
         private const string EXIT_CONFIRMATION_TEXT = "Unfinished games will be lost. Finished games will be saved.";
@@ -95,6 +91,8 @@ namespace puttgamesWP10
             }
         }
 
+        // enable or disable the save button according to the status of 
+        // completion of the game of the particular player
         void pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             PivotItem item = pivot.Items[pivot.SelectedIndex] as PivotItem;
@@ -176,17 +174,13 @@ namespace puttgamesWP10
             }
         }
         
-
+        // enable or disable the save button when player completes of uncompletes their game
         void cxItem_PlayerCompletedGame(object sender, RoutedEventArgs e)
         {
-            //check which player is currently active and save that they have completed the game
-            //completedPlayers.Add(pivot.SelectedIndex);
             SaveAppBarButton.IsEnabled = true;
         }
         void cxItem_PlayerUncompletedGame(object sender, RoutedEventArgs e)
         {
-            //check which player is currently active and save that they have completed the game
-            //completedPlayers.Add(pivot.SelectedIndex);
             SaveAppBarButton.IsEnabled = false;
         }
 
@@ -300,13 +294,7 @@ namespace puttgamesWP10
             }
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             localSettings.Values["NewResults"] = newResults.Stringify();
-            //Debug.WriteLine("NewResults:");
-            //Debug.WriteLine(newResults.Stringify());
-
-            //create Result items to the model and save them
-            //Result newResultr = new Result("kukko", "Markus", "1", "100", "Tänään");
-            //SampleDataSource datasource = new SampleDataSource();
-            //await datasource.AddResultAsync(newResultr);
+            
             this.Frame.BackStack.RemoveAt(1);
             this.navigationHelper.GoBack();
         }

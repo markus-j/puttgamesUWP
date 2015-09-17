@@ -78,6 +78,8 @@ namespace puttgamesWP10
             msg.Commands.Add(cancelBtn);
             IUICommand result = await msg.ShowAsync();
         }
+        
+        // if there are uncompleted results, show warning
         private async void showUncompletedResultsWarning()
         {
             var msg = new MessageDialog(SAVE_UNCOMPLETED_CONFIRMATION_TEXT, SAVE_UNCOMPLETED_CONFIRMATION_TITLE);
@@ -87,6 +89,8 @@ namespace puttgamesWP10
             msg.Commands.Add(cancelBtn);
             IUICommand result = await msg.ShowAsync();
         }
+
+        //handle save confirmation handler
         public void SaveConfirmationCommandHandler(IUICommand commandLabel)
         {
             var Action = commandLabel.Label;
@@ -103,7 +107,7 @@ namespace puttgamesWP10
                     break;
             }
         }
-        // Handle the confirmation selection
+        // Handle the back confirmation selection
         public void ConfirmationCommandHandler(IUICommand commandLabel)
         {
             var Action = commandLabel.Label;
@@ -121,7 +125,7 @@ namespace puttgamesWP10
                     break;
             }
         }
-
+        // enable or disable save button according to the completion stage
         void pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             PivotItem item = pivot.Items[pivot.SelectedIndex] as PivotItem;
@@ -137,6 +141,7 @@ namespace puttgamesWP10
             }
         }
 
+        // save button handler
         private void SaveAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             bool showWarning = false;
@@ -165,6 +170,7 @@ namespace puttgamesWP10
             }
         }
 
+        // saves both the scores and the full JYLY scores for further use in future (export, graphs, statisctics, etc.)
         private void getAndSaveResults()
         {
             JsonArray newResults = new JsonArray();

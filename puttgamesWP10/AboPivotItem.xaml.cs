@@ -50,6 +50,7 @@ namespace puttgamesWP10
             root.Children.Add(thirdSelector);
         }
 
+        // handle user clicks to the TenSelectors, add points accordingly
         private void selector_SelectionChanged(object sender, RoutedEventArgs e)
         {
             TenSelector s = sender as TenSelector;
@@ -70,10 +71,13 @@ namespace puttgamesWP10
                 score.Text = (firstScore + secondScore + thirdScore).ToString();
             }
         }
+        // get total score
         public int getScore()
         {
             return (firstScore + secondScore + thirdScore);
         }
+
+        // get state as string e.g "0;0;0"
         public string getState()
         {
             string state =  (firstSelector.selection()).ToString() + ";" + 
@@ -82,6 +86,8 @@ namespace puttgamesWP10
             
             return state;
         }
+
+        // set state from a string formatted like "0;0;0"
         public void setState(string state)
         {
             string score1 = state.Substring(0, (state.IndexOf(";")));

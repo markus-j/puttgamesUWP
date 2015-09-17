@@ -326,7 +326,7 @@ namespace puttgamesWP10
 
             Debug.WriteLine("DII: resultGroups.count: " + resultGroups.Count<GameResultsGroup>());
 
-            // check if this is the first boot                                    !
+            // check if this is the first boot or is the app udated to Abo or JYLY versions to save all data
             if (saveData || !localSettings.Values.ContainsKey("FirstBootDone") ||
                 !localSettings.Values.ContainsKey("update1.2.0.0_done") ||
                 localSettings.Values.ContainsKey("SaveAboGroup") ||
@@ -580,6 +580,9 @@ namespace puttgamesWP10
             //Debug.WriteLine("PlayersPivotItem Loaded done");
         }
 
+        // checks if there is a need to show proPack offer:
+        // there is at least one player, with rating greater than 0 and propack is not purchased already
+        // all pivot items need to be created as well
         private bool NeedToshowProPackOffer()
         {
             var playerGroup = defaultViewModel[PlayerGroupName] as PlayerGroup;
@@ -636,6 +639,7 @@ namespace puttgamesWP10
                 return;
             }
 
+            // create new pivot item and set it to the view according to what view has been swiped to be visible
             Pivot pivot = (Pivot)sender;
 
             if (args.Item == pivot.Items[0])
@@ -683,6 +687,8 @@ namespace puttgamesWP10
             Frame.Navigate(typeof(BuyProPackPage));
         }
 
+
+        // scroll views up every time they are loaded, this applies better UX when coming back from the game views
         private void PivotItem0_Loaded(object sender, RoutedEventArgs e)
         {
             MainPivotItem0 p = ((pivot.Items[0] as PivotItem).Content) as MainPivotItem0;

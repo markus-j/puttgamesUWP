@@ -21,13 +21,12 @@ using Windows.UI.Popups;
 using Windows.Data.Json;
 
 
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
-
 namespace puttgamesWP10
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Abo game page includes one or more AboPivotItems, one for each player.
     /// </summary>
+    
     public sealed partial class AboGamePage : Page
     {
         private const string EXIT_CONFIRMATION_TEXT = "Results are not saved.";
@@ -39,8 +38,6 @@ namespace puttgamesWP10
         private const string EXIT = "exit";
         private const string resultGroupName = "resultGroup";
         private const string DONE = "ok";
-        private const string INFO_TEXT = "Click distance (first column) to select the whole row.";
-        private const string INFO_TITLE = "Info";
         private const string GAME_MODE_ID = "2";
 
         private NavigationHelper navigationHelper;
@@ -68,6 +65,9 @@ namespace puttgamesWP10
         {
             return true;
         }
+
+        // shows exit confirmation popup
+        // TODO popup is not currently shown because of new back button handling
         private async void showExitConfirmation()
         {
             var msg = new MessageDialog(EXIT_CONFIRMATION_TEXT, EXIT_CONFIRMATION_TITLE);
@@ -77,6 +77,8 @@ namespace puttgamesWP10
             msg.Commands.Add(cancelBtn);
             IUICommand result = await msg.ShowAsync();
         }
+
+        //Save confirmation is shown always to prevent erroneus clicks
         private async void showSaveConfirmation()
         {
             var msg = new MessageDialog(SAVE_CONFIRMATION_TEXT, SAVE_CONFIRMATION_TITLE);
@@ -102,6 +104,7 @@ namespace puttgamesWP10
                     break;
             }
         }
+
         // Handle the confirmation selection
         public void ConfirmationCommandHandler(IUICommand commandLabel)
         {
@@ -126,6 +129,7 @@ namespace puttgamesWP10
             showSaveConfirmation();
         }
 
+        //gets results for all players, puts them on temp storage to localSettings for mainpage to save
         private void getAndSaveResults()
         {
             // get all results to a List<List<int>>, both completed and uncompleted
@@ -155,6 +159,7 @@ namespace puttgamesWP10
             this.navigationHelper.GoBack();
         }
         
+        // Navigation parameters parsed to a list
         private void parseParametersToList(string navigationParameters, ref List<string> parameterList)
         {
             while (navigationParameters.Length > 0)
@@ -203,24 +208,21 @@ namespace puttgamesWP10
 
             string players = "";
 
+            // first navigation to the page
             if (e.PageState == null)
             {
                 players = e.NavigationParameter.ToString();
             }
+            // there is a saved state, resume
             else if (e.PageState.ContainsKey("Players"))
             {
                 players = (string)e.PageState["Players"];
             }
-            else
-            {
-                // we have screwed up smthing
-            }
-
+            
             List<string> selectedPlayers = new List<string>();
-
             parseParametersToList(players, ref selectedPlayers);
 
-            // create pivot items (came pages) for each player
+            // create pivot items (game pages) for each player
             for (int i = 0; i < selectedPlayers.Count; ++i)
             {
                 PivotItem pivotItem = new PivotItem();
@@ -231,7 +233,6 @@ namespace puttgamesWP10
             }
 
             // if there was a saved state, set counters to their values
-
             if (e.PageState != null)
             {
                 for (int i = 0; i < pivot.Items.Count; ++i)
@@ -257,6 +258,7 @@ namespace puttgamesWP10
         /// serializable state.</param>
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
+            // save each player's game state
             string players = "";
             for (int i = 0; i < pivot.Items.Count; ++i)
             {

@@ -21,13 +21,9 @@ using Windows.Storage;
 using System.Threading.Tasks;
 
 
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace puttgamesWP10
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class BuyProPackPage : Page
     {
         private NavigationHelper navigationHelper;
@@ -86,7 +82,7 @@ namespace puttgamesWP10
         /// session.  The state will be null the first time a page is visited.</param>
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            //DEBUG only
+            //DEBUG only, using debug interface for buying
             #region debug
             /*
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -107,8 +103,8 @@ namespace puttgamesWP10
             */
             #endregion
 
-            // permanent
-
+            
+            // check if propack is purchased and show the purchase button accordingly
             if (Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("ProPackPurchased") || licenseInformation.ProductLicenses[PRO_PACK].IsActive)
             {
                 buyBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -235,7 +231,8 @@ namespace puttgamesWP10
             }
         }
 
-        /*
+        /* Debug code for dummy store purchase
+
         private async void LoadInAppPurchaseProxyFileAsync(string filename)
         {
             //Debug.WriteLine("D1");
@@ -266,7 +263,8 @@ namespace puttgamesWP10
             } /
         }*/
 
-        /*
+        /* Debug only, to unbuy
+
         private void Unbuy_Button_Click(object sender, RoutedEventArgs e)
         {
             LoadInAppPurchaseProxyFileAsync(XML_NOK); 

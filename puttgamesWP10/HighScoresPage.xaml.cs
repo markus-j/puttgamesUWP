@@ -56,6 +56,7 @@ namespace puttgamesWP10
 
         async void HighScoresPage_Loaded(object sender, RoutedEventArgs e)
         {
+            // if result group is not retreived, try again. this is a workaround for random cases when result group is null
             if (!DefaultViewModel.ContainsKey(ResultGroupName) || DefaultViewModel[ResultGroupName] == null)
             {
                 GameResultsGroup resultGroup = null;
@@ -116,8 +117,6 @@ namespace puttgamesWP10
 
             Header.Text = gameModes[e.NavigationParameter.ToString()];
             navParameter = e.NavigationParameter.ToString();
-            //var item = await SampleDataSource.GetItemAsync((string)e.NavigationParameter);
-            //this.DefaultViewModel["Item"] = item;
         }
 
         /// <summary>
@@ -131,7 +130,7 @@ namespace puttgamesWP10
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
 
-            // TODO: Save the unique state of the page here.
+            // no specific state to save
         }
 
         #region NavigationHelper registration
@@ -161,6 +160,7 @@ namespace puttgamesWP10
 
         #endregion
 
+        // switch to selection mode and back
         private void SelectionModeAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             if (scoresListView.SelectionMode == ListViewSelectionMode.None)
@@ -174,6 +174,7 @@ namespace puttgamesWP10
             }
         }
 
+        // delete selected score
         private void DeleteAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             var results = this.DefaultViewModel[ResultGroupName] as GameResultsGroup;
@@ -269,6 +270,7 @@ namespace puttgamesWP10
             }
         }*/
 
+        // if nothing is selected, can't delete. so disable delete button.
         private void scoresListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (scoresListView.SelectedItems.Count == 0)
@@ -281,6 +283,7 @@ namespace puttgamesWP10
             }
         }
         
+        // long tap delete click handler
         private void MenuFlyoutDelete_Click(object sender, RoutedEventArgs e)
         {
             var datacontext = (e.OriginalSource as FrameworkElement).DataContext;
@@ -296,6 +299,7 @@ namespace puttgamesWP10
             dataSaver.SaveAllDataToJson();
         }
 
+        // long tap shows delete option
         private void scoresListView_Holding(object sender, HoldingRoutedEventArgs e)
         {
             FrameworkElement senderElement = sender as FrameworkElement;

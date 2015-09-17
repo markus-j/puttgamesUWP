@@ -154,11 +154,16 @@ namespace puttgamesWP10
         private void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-
+            
             if (rootFrame.CanGoBack)
             {
                 e.Handled = true;
-                rootFrame.GoBack();
+
+                // do not go back from a game page, but let the page show back confirmation
+                if(rootFrame.BackStack.Count != 3)
+                {
+                    rootFrame.GoBack();
+                }
             }
         }
     }

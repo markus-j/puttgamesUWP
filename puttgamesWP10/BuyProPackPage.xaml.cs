@@ -31,13 +31,13 @@ namespace puttgamesWP10
         private LicenseInformation licenseInformation;
         private const string PRO_PACK = "ProPack";
         private const string STATUS_PURCHASE_SUCCESSFUL = "ProPack successfully purchased. Enjoy!";
-        private const string STATUS_ALREADY_PURCHASED = "ProPack is already purchased.";
+        private const string STATUS_ALREADY_PURCHASED = "Earlier ProPack purchase restored.";
         private const string STATUS_NOT_PURCHASED = "ProPack was not purchased.";
         private const string STATUS_ERROR = "Something went wrong, ProPack was not purchased. Please try again later.";
 
         //debug
-        private const string XML_NOK = "in-app-purchase_nok.xml";
-        private const string XML_OK = "in-app-purchase_ok.xml";
+        //private const string XML_NOK = "in-app-purchase_nok.xml";
+        //private const string XML_OK = "in-app-purchase_ok.xml";
 
         public BuyProPackPage()
         {
@@ -161,9 +161,9 @@ namespace puttgamesWP10
 
         private async void Buy_Button_Click(object sender, RoutedEventArgs e)
         {
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             if (!licenseInformation.ProductLicenses[PRO_PACK].IsActive)
             {
-                var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
                 try
                 {
                     // The customer doesn't own this feature, so 
@@ -228,6 +228,8 @@ namespace puttgamesWP10
             {
                 // The customer already owns this feature.
                 Debug.WriteLine("Customer owns this already.");
+                localSettings.Values["ProPackPurchased"] = true;
+                statusLbl.Text = STATUS_ALREADY_PURCHASED;
             }
         }
 

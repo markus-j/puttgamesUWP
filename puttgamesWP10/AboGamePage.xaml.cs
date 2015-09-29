@@ -19,7 +19,7 @@ using System.Diagnostics;
 using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Windows.Data.Json;
-
+using Windows.UI.Core;
 
 namespace puttgamesWP10
 {
@@ -42,7 +42,6 @@ namespace puttgamesWP10
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private RelayCommand _checkedGoBackCommand;
 
         public AboGamePage()
         {
@@ -51,19 +50,14 @@ namespace puttgamesWP10
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            // add check before going back
-            _checkedGoBackCommand = new RelayCommand(
-                                    () => this.showExitConfirmation(),
-                                    () => this.CanCheckGoBack()
-                                );
+            // new back button handling
+            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 
-            navigationHelper.GoBackCommand = _checkedGoBackCommand;
         }
 
-        // return false if no check is needed
-        private bool CanCheckGoBack()
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
-            return true;
+            showExitConfirmation();
         }
 
         // shows exit confirmation popup
@@ -296,6 +290,7 @@ namespace puttgamesWP10
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedFrom(e);
+            SystemNavigationManager.GetForCurrentView().BackRequested -= OnBackRequested;
         }
 
         #endregion

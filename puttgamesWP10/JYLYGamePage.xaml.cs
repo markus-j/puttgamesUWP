@@ -19,6 +19,7 @@ using System.Diagnostics;
 using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Windows.Data.Json;
+using Windows.UI.Core;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -42,10 +43,8 @@ namespace puttgamesWP10
         private const string resultGroupName = "resultGroup";
         private const string DONE = "ok";
 
-        private const string EXIT_CONFIRMATION_TEXT_2 = "Unfinished games will be lost. Finished games will be saved.";
-        private const string SAVE_UNCOMPLETED_CONFIRMATION_TEXT = "Unfinished games will be lost. Finished games will be saved.";
+        private const string SAVE_UNCOMPLETED_CONFIRMATION_TEXT = "Finish game and save?";
         private const string SAVE_UNCOMPLETED_CONFIRMATION_TITLE = "All players not finished";
-        private RelayCommand _checkedGoBackCommand;
 
         public JYLYGamePage()
         {
@@ -54,20 +53,15 @@ namespace puttgamesWP10
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
-            // add check before going back
-            _checkedGoBackCommand = new RelayCommand(
-                                    () => this.showExitConfirmation(),
-                                    () => this.CanCheckGoBack()
-                                );
-
-            navigationHelper.GoBackCommand = _checkedGoBackCommand;
             pivot.SelectionChanged += pivot_SelectionChanged;
+
+            // new back button handling
+            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
         }
 
-        private bool CanCheckGoBack()
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
-            return true;
+            showExitConfirmation();
         }
         private async void showExitConfirmation()
         {
@@ -350,6 +344,7 @@ namespace puttgamesWP10
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedFrom(e);
+            SystemNavigationManager.GetForCurrentView().BackRequested -= OnBackRequested;
         }
 
         #endregion

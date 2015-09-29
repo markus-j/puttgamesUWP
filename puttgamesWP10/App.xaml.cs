@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Diagnostics;
 
 namespace puttgamesWP10
 {
@@ -157,12 +158,21 @@ namespace puttgamesWP10
             
             if (rootFrame.CanGoBack)
             {
-                e.Handled = true;
+                Debug.WriteLine("BackStack count: " + rootFrame.BackStack.Count);
+                Debug.WriteLine("rootFrame.CurrentSourcePageType : " + rootFrame.CurrentSourcePageType);
+                Debug.WriteLine("typeof(BuyProPackPage) : " + typeof(BuyProPackPage));
 
                 // do not go back from a game page, but let the page show back confirmation
-                if(rootFrame.BackStack.Count != 3)
+                if (rootFrame.BackStack.Count != 2 || 
+                    rootFrame.CurrentSourcePageType.ToString() == typeof(BuyProPackPage).ToString())
                 {
                     rootFrame.GoBack();
+                    e.Handled = true;
+                }
+                else
+                {
+                    // show exit confirmation
+
                 }
             }
         }

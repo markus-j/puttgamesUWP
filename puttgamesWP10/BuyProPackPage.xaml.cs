@@ -20,7 +20,7 @@ using System.Diagnostics;
 using Windows.Storage;
 using System.Threading.Tasks;
 
-
+// Page to show ProPack offer and button to go to the Store and buy ProPack
 
 namespace puttgamesWP10
 {

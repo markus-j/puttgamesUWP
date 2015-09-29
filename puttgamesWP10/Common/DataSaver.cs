@@ -1,4 +1,6 @@
-﻿using System;
+﻿// This class is used to save data to json format in text file JSON_FILENAME
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -103,6 +105,7 @@ namespace puttgamesWP10
 
             for (int i = 0; i < resultGroups.Count<GameResultsGroup>(); i++)
             {
+                // workaround for error where the result groups are multiplied: 
                 // prevent more than three result groups to be saved (0,1,2,3)
                 if (i >= 4)
                 {
@@ -128,8 +131,6 @@ namespace puttgamesWP10
                 setOfResults.Add("Results", groupArr);
 
                 RgroupsArr.Add(setOfResults);
-                
-
             }
             root.Add("ResultGroups", RgroupsArr);
 

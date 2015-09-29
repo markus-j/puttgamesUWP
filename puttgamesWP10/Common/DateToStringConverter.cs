@@ -1,4 +1,6 @@
-﻿using System;
+﻿// this class converts DateTime objects to localized string format
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

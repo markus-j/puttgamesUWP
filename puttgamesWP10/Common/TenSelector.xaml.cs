@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
 
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+// Ten selector is a UserControl that is used to get input from the user from 1 to 10
 
 namespace puttgamesWP10
 {

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 using Windows.ApplicationModel.Store;
 
+
+// Rating converter hides rating partially if proPack is not purchased
 namespace puttgamesWP10
 {
     public class RatingConverter : IValueConverter

@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using puttgamesWP10;
 
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+// FiveSelector is used JYLY game mode to get input from 0-5
 
 namespace puttgamesWP10
 {

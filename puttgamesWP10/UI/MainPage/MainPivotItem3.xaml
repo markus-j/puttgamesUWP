@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="puttgamesWP10.MainPivotItem2"
+    x:Class="puttgamesWP10.MainPivotItem3"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:puttgamesWP10"
@@ -29,14 +29,14 @@
             <StackPanel  Margin="0,0,0,24" Grid.Row="0">
                 <TextBlock
                     Text="Summary" 
-                    Style="{ThemeResource SubtitleTextBlockStyle}"
+                    Style="{ThemeResource SubtitleTextBlockStyle}" 
                     Foreground="{ThemeResource SystemAccentColor}" />
                 <TextBlock
-                    Text="Putt like they do it in Åbo!" 
+                    Text="The drill of drills is here!" 
                     TextWrapping="Wrap" 
                     Style="{StaticResource BaseTextBlockStyle}" />
                 <TextBlock
-                    Text="Ten putts from 5m, 10m and 15m. 1 point, 2 points, 3 points." 
+                    Text="Start with 5 putts from 10m, your result defines the next lie. Distance equals points." 
                     TextWrapping="Wrap" 
                     Style="{StaticResource BaseTextBlockStyle}" />
             </StackPanel>
@@ -56,6 +56,7 @@
                 Visibility="{Binding Results.Count, Converter={StaticResource PlaceholderConverter}}"
                 Style="{ThemeResource SubtitleTextBlockStyle}" />
             <ListView 
+                
                 Tapped="TopResultsListView_Tapped"
                 x:Name="TopResultsListView"
                 Grid.Row="2"
@@ -67,7 +68,7 @@
                 ContinuumNavigationTransitionInfo.ExitElementContainer="False">
 
                 <ListView.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/PuttBackground_Gblur.png"/>
                 </ListView.Background>
 
                 <ListView.ItemContainerStyle>
@@ -85,7 +86,7 @@
 
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.3*" MaxWidth="60"/>
+                                <ColumnDefinition Width="1.3*" MaxWidth="80"/>
                                 <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
@@ -127,19 +128,31 @@
                 Margin="0,24,0,0"
                 Text="Rules" 
                 Style="{ThemeResource SubtitleTextBlockStyle}" 
-                Foreground="{ThemeResource SystemAccentColor}"/>
-            
+                Foreground="{ThemeResource SystemAccentColor}" />
+
             <StackPanel Grid.Row="4" >
                 <StackPanel.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/PuttBackground_Gblur.png"/>
                 </StackPanel.Background>
 
 
                 <TextBlock
-                    Text="Throw ten putts from each of the three distances: 5m, 10m and 15m (16ft, 33ft and 49ft). From 5m you get 1 point for each success, from 10m 2 points, and from the furthest disctance 3 points."
+                    Text="Throw twenty series of five putts. The amount of succesful putts defines the next lie as follows. 0->5m, 1->6m, 2->7m, 3->8m, 4->9m, 5->10m. Start from 10m. Distance equals points, so 10 points from 10 meters, 5 points from 5 meters, etc."
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BodyTextBlockStyle}" 
                     Margin="0,0,0,12" />
+                
+                <TextBlock 
+                    Grid.Row="3" 
+                    Margin="0,0,0,0"
+                    Text="Credits" 
+                    Style="{ThemeResource SubtitleTextBlockStyle}" 
+                    Foreground="{ThemeResource SystemAccentColor}" />
+                <TextBlock
+                    Text="The whole credit for this game mode goes to alias JYLY at frisbeegolf-forum.fi. Thank you!"
+                    TextWrapping="Wrap" 
+                    Style="{ThemeResource BodyTextBlockStyle}" 
+                    Margin="0,0,0,24" />
                 
                 <TextBlock 
                     Text="Skill levels"
@@ -148,52 +161,52 @@
                     Foreground="{ThemeResource SystemAccentColor}"
                     Margin="0,0,0,0" />
                 <TextBlock 
-                    Text="0-8"
+                    Text="0-200"
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BaseTextBlockStyle}" Foreground="Red" FontWeight="Bold" 
                     Margin="0,0,0,0" />
                 <TextBlock 
-                    Text="'Raisio'. PuttRating up to 800."
+                    Text="PuttRating up to 800."
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BodyTextBlockStyle}" 
                     Margin="0,0,0,12" />
                 <TextBlock 
-                    Text="9-15"
+                    Text="201-400"
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BaseTextBlockStyle}" Foreground="Orange" FontWeight="Bold"
                     Margin="0,0,0,0" />
                 <TextBlock 
-                    Text="'Kaarina'. PuttRating up to 900."
+                    Text="PuttRating up to 900."
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BodyTextBlockStyle}" 
                     Margin="0,0,0,12" />
                 <TextBlock 
-                    Text="16-30"
+                    Text="401-600"
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BaseTextBlockStyle}" Foreground="Cyan" FontWeight="Bold"
                     Margin="0,0,0,0" />
                 <TextBlock
-                    Text="'Masku'. PuttRating up to 1005."
+                    Text="PuttRating up to 980."
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BodyTextBlockStyle}" 
                     Margin="0,0,0,12" />
                 <TextBlock 
-                    Text="31-40"
+                    Text="601-800"
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BaseTextBlockStyle}" Foreground="LightGreen" FontWeight="Bold"
                     Margin="0,0,0,0" />
                 <TextBlock
-                    Text="'Lauste'. PuttRating up to 1100."
+                    Text="PuttRating up to 1100."
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BodyTextBlockStyle}" 
                     Margin="0,0,0,12" />
                 <TextBlock 
-                    Text="41-60"
+                    Text="801-1000"
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BaseTextBlockStyle}" Foreground="HotPink" FontWeight="Bold"
                     Margin="0,0,0,0" />
                 <TextBlock  
-                    Text="You should move to Åbo!"
+                    Text="World class. PuttRating up to 1150."
                     TextWrapping="Wrap" 
                     Style="{ThemeResource BodyTextBlockStyle}" 
                     Margin="0,0,0,90" />

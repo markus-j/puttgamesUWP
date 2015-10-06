@@ -49,7 +49,7 @@
                 Style="{ThemeResource SubtitleTextBlockStyle}" />
             <ScrollViewer>
                 <ScrollViewer.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/PuttBackground_Gblur.png"/>
                 </ScrollViewer.Background>
                 
                 

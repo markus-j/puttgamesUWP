@@ -133,14 +133,14 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboGamePage.xaml.cs" />
-    <Compile Include="AboPivotItem.xaml.cs" />
-    <Compile Include="AboutPage.xaml.cs" />
-    <Compile Include="AddPlayerDialog.xaml.cs" />
+    <Compile Include="UI\GamePages\ABO\AboGamePage.xaml.cs" />
+    <Compile Include="UI\GamePages\ABO\AboPivotItem.xaml.cs" />
+    <Compile Include="UI\AboutPage.xaml.cs" />
+    <Compile Include="UI\AddPlayerDialog.xaml.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BuyProPackPage.xaml.cs" />
+    <Compile Include="UI\BuyProPackPage.xaml.cs" />
     <Compile Include="Common\DataSaver.cs" />
     <Compile Include="Common\DateToStringConverter.cs" />
     <Compile Include="Common\FiveSelector.xaml.cs" />
@@ -154,24 +154,24 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Common\TenSelector.xaml.cs" />
-    <Compile Include="CXGamePage.xaml.cs" />
-    <Compile Include="CXPivotItem.xaml.cs" />
+    <Compile Include="UI\GamePages\CX\CXGamePage.xaml.cs" />
+    <Compile Include="UI\GamePages\CX\CXPivotItem.xaml.cs" />
     <Compile Include="DataModel\SampleDataSource.cs" />
-    <Compile Include="HighScoresPage.xaml.cs" />
-    <Compile Include="JYLYGamePage.xaml.cs" />
-    <Compile Include="JYLYPivotItem.xaml.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="UI\HighScoresPage.xaml.cs" />
+    <Compile Include="UI\GamePages\JYLY\JYLYGamePage.xaml.cs" />
+    <Compile Include="UI\GamePages\JYLY\JYLYPivotItem.xaml.cs" />
+    <Compile Include="UI\MainPage\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPagePivotItemPlayers.xaml.cs" />
-    <Compile Include="MainPivotItem0.xaml.cs" />
-    <Compile Include="MainPivotItem1.xaml.cs" />
-    <Compile Include="MainPivotItem2.xaml.cs" />
-    <Compile Include="MainPivotItem3.xaml.cs" />
-    <Compile Include="MXXVGamePage.xaml.cs" />
-    <Compile Include="MXXVPivotItem.xaml.cs" />
-    <Compile Include="PlayerDetailPage.xaml.cs" />
-    <Compile Include="PlayersPage.xaml.cs" />
+    <Compile Include="UI\MainPage\MainPagePivotItemPlayers.xaml.cs" />
+    <Compile Include="UI\MainPage\MainPivotItem0.xaml.cs" />
+    <Compile Include="UI\MainPage\MainPivotItem1.xaml.cs" />
+    <Compile Include="UI\MainPage\MainPivotItem2.xaml.cs" />
+    <Compile Include="UI\MainPage\MainPivotItem3.xaml.cs" />
+    <Compile Include="UI\GamePages\MMXV\MXXVGamePage.xaml.cs" />
+    <Compile Include="UI\GamePages\MMXV\MXXVPivotItem.xaml.cs" />
+    <Compile Include="UI\PlayerDetailPage.xaml.cs" />
+    <Compile Include="UI\PlayersPage.xaml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,23 +191,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AboGamePage.xaml">
+    <Page Include="UI\GamePages\ABO\AboGamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="AboPivotItem.xaml">
+    <Page Include="UI\GamePages\ABO\AboPivotItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="AboutPage.xaml">
+    <Page Include="UI\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="AddPlayerDialog.xaml">
+    <Page Include="UI\AddPlayerDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="BuyProPackPage.xaml">
+    <Page Include="UI\BuyProPackPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -219,63 +219,63 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CXGamePage.xaml">
+    <Page Include="UI\GamePages\CX\CXGamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CXPivotItem.xaml">
+    <Page Include="UI\GamePages\CX\CXPivotItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="HighScoresPage.xaml">
+    <Page Include="UI\HighScoresPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="JYLYGamePage.xaml">
+    <Page Include="UI\GamePages\JYLY\JYLYGamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="JYLYPivotItem.xaml">
+    <Page Include="UI\GamePages\JYLY\JYLYPivotItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="UI\MainPage\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPagePivotItemPlayers.xaml">
+    <Page Include="UI\MainPage\MainPagePivotItemPlayers.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPivotItem0.xaml">
+    <Page Include="UI\MainPage\MainPivotItem0.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPivotItem1.xaml">
+    <Page Include="UI\MainPage\MainPivotItem1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPivotItem2.xaml">
+    <Page Include="UI\MainPage\MainPivotItem2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPivotItem3.xaml">
+    <Page Include="UI\MainPage\MainPivotItem3.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MXXVGamePage.xaml">
+    <Page Include="UI\GamePages\MMXV\MXXVGamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MXXVPivotItem.xaml">
+    <Page Include="UI\GamePages\MMXV\MXXVPivotItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PlayerDetailPage.xaml">
+    <Page Include="UI\PlayerDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PlayersPage.xaml">
+    <Page Include="UI\PlayersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

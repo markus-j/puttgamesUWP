@@ -70,7 +70,7 @@
 
 
                 <ListView.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/PuttBackground_Gblur.png"/>
                 </ListView.Background>
 
                 <ListView.ItemContainerStyle>
@@ -134,7 +134,7 @@
 
             <StackPanel Grid.Row="4" >
                 <StackPanel.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/PuttBackground_Gblur.png"/>
                 </StackPanel.Background>
 
                 <TextBlock

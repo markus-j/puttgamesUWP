@@ -83,7 +83,7 @@
                 ContinuumNavigationTransitionInfo.ExitElementContainer="False">
                 
                 <ListView.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/PuttBackground_Gblur.png"/>
                 </ListView.Background>
                 
                 <FlyoutBase.AttachedFlyout>

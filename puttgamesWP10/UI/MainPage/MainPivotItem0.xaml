@@ -72,7 +72,7 @@
 
 
                 <ListView.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/PuttBackground_Gblur.png"/>
                 </ListView.Background>
 
                 <FlyoutBase.AttachedFlyout>
@@ -135,7 +135,7 @@
             <StackPanel Grid.Row="3">
 
                 <StackPanel.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/PuttBackground_Gblur.png"/>
                 </StackPanel.Background>
 
                 <TextBlock 

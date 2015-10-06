@@ -11,7 +11,7 @@
     
     <Grid Name="root">
         <Grid.Background>
-            <ImageBrush Stretch="Uniform" ImageSource="Assets/PuttBackground_Gblur.png"/>
+            <ImageBrush Stretch="Uniform" ImageSource="/Assets/PuttBackground_Gblur.png"/>
         </Grid.Background>
         
         <Grid.RowDefinitions>

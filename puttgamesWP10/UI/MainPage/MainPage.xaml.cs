@@ -4,9 +4,11 @@ using puttgamesWP10.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Store;
 using Windows.Data.Json;
@@ -35,7 +37,6 @@ namespace puttgamesWP10
         private const string JYLYResultGroupName = "JYLYResultGroupName";
 
         private const string PlayerGroupName = "PlayerGroup";
-        private const string JSON_FILENAME = "Data.json";
         private const string NEXT_PLAYER_ID = "nextPlayerId";
 
         private const string PROPACK_MESSAGE_TEXT = "This game mode is available only in ProPack.";
@@ -68,7 +69,6 @@ namespace puttgamesWP10
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-            //this.Loaded += MainPage_Loaded;
             pivot.SelectionChanged += pivot_SelectionChanged;
 
             //licenseInformation = CurrentAppSimulator.LicenseInformation;
@@ -127,9 +127,6 @@ namespace puttgamesWP10
         /// session. The state will be null the first time a page is visited.</param>
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-
-            //Debug.WriteLine("MainPage_LoadState1");
-
             //DEBUG
 
             #region debug
@@ -157,7 +154,6 @@ namespace puttgamesWP10
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
             {
                 HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-                Debug.WriteLine("HWButtonTypeIsPresent");
             }
 
             IEnumerable<GameResultsGroup> resultGroups = null;
@@ -168,13 +164,21 @@ namespace puttgamesWP10
                 counter++;
             }
 
-            Debug.WriteLine("DI: resultGroups.count: " + resultGroups.Count<GameResultsGroup>());
-
             this.DefaultViewModel[FirstGroupName] = resultGroups.ElementAt(0);
             this.DefaultViewModel[SecondGroupName] = resultGroups.ElementAt(1);
             this.DefaultViewModel[ThirdGroupName] = resultGroups.ElementAt(2);
             this.DefaultViewModel[FourthGroupName] = resultGroups.ElementAt(3);
 
+            PlayerGroup playerDatGroup = null;
+            counter = 0;
+            while (playerDatGroup == null && counter < RETRY_COUNT)
+            {
+                playerDatGroup = await SampleDataSource.GetPlayerGroupOne();
+                counter++;
+            }
+            this.DefaultViewModel[PlayerGroupName] = playerDatGroup;
+            
+            
             bool saveData = false;
 
             #region newResults
@@ -354,6 +358,7 @@ namespace puttgamesWP10
 
             Debug.WriteLine("MainPage LoadState done");
         }
+        
 
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
@@ -365,8 +370,10 @@ namespace puttgamesWP10
         /// serializable state.</param>
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
-
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+            }
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             localSettings.Values[PIVOT_INDEX] = this.pivot.SelectedIndex;
         }
@@ -400,7 +407,8 @@ namespace puttgamesWP10
             bool canPlay = true;
             if (pivot.SelectedIndex == 2 || pivot.SelectedIndex == 3)
             {
-                if (!(Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("ProPackPurchased") || licenseInformation.ProductLicenses[PRO_PACK].IsActive))
+                if (!(Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("ProPackPurchased") || 
+                    licenseInformation.ProductLicenses[PRO_PACK].IsActive))
                 {
                     //TODO
                     canPlay = false;
@@ -495,9 +503,8 @@ namespace puttgamesWP10
                 playerGroup.Players.Add(newPlayer);
 
                 // Scroll the new item into view.
-                Debug.WriteLine("Add1");
                 dataSaver.SaveAllDataToJson();
-                Debug.WriteLine("Add2");
+                
                 // add player to selected players localSettings
                 // save selected players
                 string selectedPlayers = "";
@@ -565,19 +572,22 @@ namespace puttgamesWP10
             {
                 playerGroup.Players.Add(playersList.ElementAt(i));
             }
+            var playersPivot = (pivot.Items[4] as PivotItem).Content as MainPagePivotItemPlayers;
+            if (playersPivot != null)
+            {
+                playersPivot.UpdateListView();
+            }
 
             localSettings.Values["SelectedPlayers"] = selectedPlayers;
 
-            if (NeedToshowProPackOffer() && ((pivot.Items[2] as PivotItem).Content as MainPagePivotItemPlayers) != null)
+            if (NeedToshowProPackOffer() && playersPivot != null)
             {
-                ((pivot.Items[2] as PivotItem).Content as MainPagePivotItemPlayers).showProPackOffer();
+                playersPivot.showProPackOffer();
             }
-            else if (((pivot.Items[2] as PivotItem).Content as MainPagePivotItemPlayers) != null)
+            else if (playersPivot != null)
             {
-                ((pivot.Items[2] as PivotItem).Content as MainPagePivotItemPlayers).hideProPackOffer();
+                playersPivot.hideProPackOffer();
             }
-
-            //Debug.WriteLine("PlayersPivotItem Loaded done");
         }
 
         // checks if there is a need to show proPack offer:

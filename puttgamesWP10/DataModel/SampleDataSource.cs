@@ -217,15 +217,39 @@ namespace puttgamesWP10.Data
             return null;
         }
 
-
+        private object dataLock = new object();
+        private bool isDataLocked = false;
         private async Task GetSampleDataAsyncC()
         {
-            if (this._results.Count != 0)
+            bool wait = false;
+            lock (dataLock)
+            {
+                if (!isDataLocked)
+                {
+                    isDataLocked = true;
+                }
+                else
+                {
+                    wait = true;
+                }
+            }
+            if (wait)
+            {
+                while (isDataLocked)
+                {
+                    await Task.Delay(100);
+                }
                 return;
-            if (this._players.Count != 0)
+            }
+            
+            if (_results.Count != 0 || _players.Count != 0 || _JYLYresults.Count != 0)
+            {
+                lock (dataLock)
+                {
+                    isDataLocked = false;
+                }
                 return;
-            if (this._JYLYresults.Count != 0)
-                return;
+            }
 
             Uri localUri = new Uri(JSON_FILEPATH_LOCAL_FOLDER + JSON_FILENAME);
             Uri installationUri = new Uri(JSON_FILEPATH_INSTALLATION_FOLDER + JSON_FILENAME);
@@ -233,25 +257,38 @@ namespace puttgamesWP10.Data
             StorageFile file = null;
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             
-            if (!localSettings.Values.ContainsKey("FileCreated"))
+            if (!localSettings.Values.ContainsKey("FileCreated") )
             {
-                Debug.WriteLine("C: File does not exist, return preloaded data");
-                //StorageFolder folder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                Debug.WriteLine("File does not exist, return preloaded data");
                 Windows.Storage.StorageFolder installedLocation = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                Debug.WriteLine("Yepa 1");
                 file = await installedLocation.GetFileAsync("data.txt");
-                Debug.WriteLine("Yepa 2");
-                //file = await StorageFile.GetFileFromApplicationUriAsync(installationUri);
-
             }
             else
             {
-                Debug.WriteLine("C: File exists, return local data");
-
-                file = await StorageFile.GetFileFromApplicationUriAsync(localUri);
+                Debug.WriteLine("File exists, return local data");
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                IReadOnlyList<StorageFile> fileList = await localFolder.GetFilesAsync();
+                foreach(var Sfile in fileList)
+                {
+                    if (Sfile.Name.Contains("data") || Sfile.Name.Contains("Data"))
+                    {
+                        try
+                        {
+                            file = await localFolder.GetFileAsync(Sfile.Name);
+                            Debug.WriteLine("File read successfully.");
+                            break;
+                        }
+                        catch (System.IO.FileNotFoundException)
+                        {
+                            Debug.WriteLine("File not found exception. Return preloaded data.");
+                            StorageFolder installedLocation = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                            file = await installedLocation.GetFileAsync("data.txt");
+                        }
+                    }
+                }
             }
 
-            Debug.WriteLine("Get on");
+            
             string jsonText = "";
             try
             {
@@ -263,11 +300,11 @@ namespace puttgamesWP10.Data
             catch (FileNotFoundException)
             {
                 // Handle file not found
-                Debug.WriteLine("FileNotFound Exception");
+                Debug.WriteLine("json FileNotFound Exception");
             }
             catch (KeyNotFoundException)
             {
-                Debug.WriteLine("KeyNotFound Exception");
+                Debug.WriteLine("json KeyNotFound Exception");
             }
             catch (System.Exception)
             {
@@ -371,7 +408,10 @@ namespace puttgamesWP10.Data
             }
 
             Debug.WriteLine("GetData Done");
-
+            lock (dataLock)
+            {
+                isDataLocked = false;
+            }       
         }
     }
 }

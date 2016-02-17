@@ -53,10 +53,21 @@ namespace puttgamesWP10
             // new back button handling
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            }
+        }
+
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            e.Handled = true;
+            showExitConfirmation();
         }
 
         private void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
+            e.Handled = true;
             showExitConfirmation();
         }
 
@@ -108,6 +119,11 @@ namespace puttgamesWP10
                 case EXIT:
                     if (Frame.CanGoBack)
                     {
+                        if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+                        {
+                            HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+                        }
+
                         this.Frame.BackStack.RemoveAt(1);
                         this.navigationHelper.GoBack();
                     }
@@ -149,6 +165,10 @@ namespace puttgamesWP10
 
             Debug.WriteLine(newResults.Stringify());
 
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+            }
             this.Frame.BackStack.RemoveAt(1);
             this.navigationHelper.GoBack();
         }

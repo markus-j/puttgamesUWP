@@ -121,7 +121,7 @@ namespace puttgamesWP10
         private async void SendLove_Button_Click(object sender, RoutedEventArgs e)
         {
             Guid appId = Windows.ApplicationModel.Store.CurrentApp.AppId;
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + appId));
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:Review?PFN=40042MarkusJaakola.Puttgames_8nt8cy3w0gq88"));
         }
 
         private void SendFeedback_Button_Click(object sender, RoutedEventArgs e)

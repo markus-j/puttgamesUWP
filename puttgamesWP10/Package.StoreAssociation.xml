@@ -203,6 +203,8 @@
     <Language Code="ky-kg" InMinimumRequirementSet="true" />
     <Language Code="lb" InMinimumRequirementSet="true" />
     <Language Code="lb-lu" InMinimumRequirementSet="true" />
+    <Language Code="lo" InMinimumRequirementSet="true" />
+    <Language Code="lo-la" InMinimumRequirementSet="true" />
     <Language Code="lt" InMinimumRequirementSet="true" />
     <Language Code="lt-lt" InMinimumRequirementSet="true" />
     <Language Code="lv" InMinimumRequirementSet="true" />
@@ -372,6 +374,7 @@
     <MainPackageIdentityName>40042MarkusJaakola.Disctape</MainPackageIdentityName>
     <MainPackageIdentityName>40042MarkusJaakola.DisctapeUniversalBeta</MainPackageIdentityName>
     <MainPackageIdentityName>40042MarkusJaakola.GymClock</MainPackageIdentityName>
+    <MainPackageIdentityName>40042MarkusJaakola.PuttGames10</MainPackageIdentityName>
     <MainPackageIdentityName>40042MarkusJaakola.PuttGamesUniversalBeta</MainPackageIdentityName>
   </AccountPackageIdentityNames>
   <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGGZNMNB" />

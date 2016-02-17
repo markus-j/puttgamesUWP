@@ -35,7 +35,6 @@ namespace puttgamesWP10
         private Dictionary<string, string> gameModes = new Dictionary<string, string>();
         private RatingCalculator ratingCalculator = new RatingCalculator();
         private DataSaver dataSaver = new DataSaver();
-        const string JSON_FILENAME = "Data.json";
         private const int RETRY_COUNT = 20;
         private string navParameter;
 

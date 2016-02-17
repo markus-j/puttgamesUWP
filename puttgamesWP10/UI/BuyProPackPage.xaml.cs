@@ -46,11 +46,12 @@ namespace puttgamesWP10
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+            
             //licenseInformation = CurrentAppSimulator.LicenseInformation;
             //
             licenseInformation = CurrentApp.LicenseInformation;
-
         }
+        
 
         /// <summary>
         /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
@@ -230,6 +231,8 @@ namespace puttgamesWP10
                 Debug.WriteLine("Customer owns this already.");
                 localSettings.Values["ProPackPurchased"] = true;
                 statusLbl.Text = STATUS_ALREADY_PURCHASED;
+                purchasedLbl.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                buyBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
         }
 

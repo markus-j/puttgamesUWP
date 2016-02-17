@@ -20,7 +20,7 @@
     <PackageCertificateKeyFile>puttgamesWP10_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>6E8167294D5EBD83D42CC09F934CA66CB29E72A7</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>AB7A3DA64BA58719E3A9E200C872BC993BEC1B25</PackageCertificateThumbprint>
     <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
@@ -131,6 +131,8 @@
     <Content Include="data.txt" />
     <None Include="data.json" />
     <None Include="project.json" />
+    <None Include="puttgamesWP10_StoreKey.pfx" />
+    <None Include="puttgamesWP10_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UI\GamePages\ABO\AboGamePage.xaml.cs" />
@@ -178,8 +180,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="puttgamesWP10_StoreKey.pfx" />
-    <None Include="puttgamesWP10_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Common\ReadMe.txt" />

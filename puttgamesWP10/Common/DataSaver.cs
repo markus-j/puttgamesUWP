@@ -27,9 +27,21 @@ namespace puttgamesWP10
         private const string JSON_FILENAME = "data.txt";
         private const int RETRY_COUNT = 20;
         private DebugStream d = new DebugStream();
-
+        private object saveLock = new object();
+        private bool isSaving = false;
         public async void SaveAllDataToJson()
         {
+            lock (saveLock)
+            {
+                if (!isSaving)
+                {
+                    isSaving = true;
+                }
+                else
+                {
+                    return;
+                }
+            }
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
             // JSON root object where all groups of groups are added: (PlayerGroups, ResultGroups)
@@ -106,7 +118,7 @@ namespace puttgamesWP10
             for (int i = 0; i < resultGroups.Count<GameResultsGroup>(); i++)
             {
                 // workaround for error where the result groups are multiplied: 
-                // prevent more than three result groups to be saved (0,1,2,3)
+                // prevent more than four result groups to be saved (0,1,2,3)
                 if (i >= 4)
                 {
                     break;
@@ -168,6 +180,28 @@ namespace puttgamesWP10
             StorageFolder folder = Windows.Storage.ApplicationData.Current.LocalFolder;
             StorageFile newFile = await folder.CreateFileAsync(JSON_FILENAME, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(newFile, root.Stringify());
+
+            //if data.json exists, delete it
+            if (!localSettings.Values.ContainsKey("OldFileDeleted"))
+            {
+                try
+                {
+                    StorageFile oldFile = await folder.GetFileAsync("data.json");
+                    if(oldFile != null)
+                    {
+                        await oldFile.DeleteAsync();
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                localSettings.Values.Add("OldFileDeleted", true);
+            }
+
+            lock (saveLock)
+            {
+                isSaving = false;
+            }
         }
     }
 }

@@ -29,6 +29,12 @@ namespace puttgamesWP10
         {
             this.InitializeComponent();
         }
+        public void UpdateListView()
+        {
+            var orig = PlayersListView.ItemsSource;
+            PlayersListView.ItemsSource = null;
+            PlayersListView.ItemsSource = orig;
+        }
         public void showProPackOffer()
         {
             buyProPackText.Visibility = Windows.UI.Xaml.Visibility.Visible;

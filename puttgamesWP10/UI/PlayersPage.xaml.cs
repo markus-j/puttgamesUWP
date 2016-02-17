@@ -32,7 +32,6 @@ namespace puttgamesWP10
         private int selectedGameMode_ = 0;
          
         private const string PlayerGroupName = "PlayerGroup";
-        private const string JSON_FILENAME = "Data.json";
         private const string NEXT_PLAYER_ID = "nextPlayerId";
         private const int RETRY_COUNT = 20;
 

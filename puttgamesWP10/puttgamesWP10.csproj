@@ -20,7 +20,7 @@
     <PackageCertificateKeyFile>puttgamesWP10_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>AB7A3DA64BA58719E3A9E200C872BC993BEC1B25</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>F12FAA07390B3AA8EDB943ED1E26F10EE6D4E15F</PackageCertificateThumbprint>
     <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">

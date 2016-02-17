@@ -52,11 +52,6 @@ namespace puttgamesWP10
 
             // new back button handling
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
-
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
-                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-            }
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
@@ -215,6 +210,10 @@ namespace puttgamesWP10
         /// session.  The state will be null the first time a page is visited.</param>
         private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            }
             // set results to the viewmodel
 
             //create pivot items based on the selected players
@@ -285,6 +284,11 @@ namespace puttgamesWP10
             }
             e.PageState.Add("Players", players);
             e.PageState.Add("SelectedIndex", pivot.SelectedIndex);
+
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+            }
         }
 
         #region NavigationHelper registration

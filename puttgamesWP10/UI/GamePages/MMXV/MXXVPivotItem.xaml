@@ -5,11 +5,27 @@
     xmlns:local="using:puttgamesWP10"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:StaticResource="using:System"
     mc:Ignorable="d"
     d:DesignHeight="640"
     d:DesignWidth="480">
     
     <Grid x:Name="root" Margin="0,0,0,0">
+        <Grid.Resources>
+            <Style x:Key="CheckAllTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="TextAlignment" Value="Left" />
+            </Style>
+            <Style x:Key="MyCheckBoxStyle" TargetType="CheckBox">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="MinWidth" Value="20" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -41,248 +57,234 @@
                    TextAlignment="Right" TextLineBounds="Tight"
                    Style="{ThemeResource SubtitleTextBlockStyle}"/>
 
-        <TextBlock x:Name="i_checkall" Text="10'" Grid.Row="1" Grid.Column="0"
-                   HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
-                   TextAlignment="Center" Tapped="CheckAll_Tapped"
-                   Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,0,0" />
+        <TextBlock x:Name="i_checkall" Text="10'" Grid.Row="1" Grid.Column="0" Tapped="CheckAll_Tapped"
+                   Style="{StaticResource CheckAllTextBlockStyle}" />
+        <TextBlock x:Name="ii_checkall" Text="15'" Grid.Row="2" Grid.Column="0" Tapped="CheckAll_Tapped"
+                   Style="{StaticResource CheckAllTextBlockStyle}" />
+        <TextBlock x:Name="iii_checkall" Text="20'" Grid.Row="3" Grid.Column="0" Tapped="CheckAll_Tapped"
+                   Style="{StaticResource CheckAllTextBlockStyle}" />
+        <TextBlock x:Name="iv_checkall"  Text="25'" Grid.Row="4" Grid.Column="0" Tapped="CheckAll_Tapped"
+                   Style="{StaticResource CheckAllTextBlockStyle}" />
+        <TextBlock x:Name="v_checkall" Text="30'" Grid.Row="5" Grid.Column="0" Tapped="CheckAll_Tapped"
+                   Style="{StaticResource CheckAllTextBlockStyle}" />
+        <TextBlock x:Name="vi_checkall" Text="35'" Grid.Row="6" Grid.Column="0" Tapped="CheckAll_Tapped"
+                   Style="{StaticResource CheckAllTextBlockStyle}" />
 
-        <TextBlock x:Name="ii_checkall" Text="15'" Grid.Row="2" Grid.Column="0"
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                   TextAlignment="Left" Tapped="CheckAll_Tapped"
-                   Style="{ThemeResource TitleTextBlockStyle}"  Margin="0,0,0,0"/>
-
-        <TextBlock x:Name="iii_checkall" Text="20'" Grid.Row="3" Grid.Column="0" 
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                   TextAlignment="Left" Tapped="CheckAll_Tapped"
-                   Style="{ThemeResource TitleTextBlockStyle}"  Margin="0,0,0,0"/>
-        <TextBlock x:Name="iv_checkall"  Text="25'" Grid.Row="4" Grid.Column="0" 
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                   TextAlignment="Left" Tapped="CheckAll_Tapped"
-                   Style="{ThemeResource TitleTextBlockStyle}"  Margin="0,0,0,0"/>
-        <TextBlock x:Name="v_checkall" Text="30'" Grid.Row="5" Grid.Column="0" 
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                   TextAlignment="Left" Tapped="CheckAll_Tapped"
-                   Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,0,0"/>
-        <TextBlock x:Name="vi_checkall" Text="35'" Grid.Row="6" Grid.Column="0" 
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                   TextAlignment="Left" Tapped="CheckAll_Tapped"
-                   Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,0,0"/>
-
-        <CheckBox MinWidth="20" Grid.Row="1" Grid.Column="1" x:Name="i_i" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <CheckBox Style="{StaticResource MyCheckBoxStyle}" MinWidth="20" Grid.Row="1" Grid.Column="1" x:Name="i_i" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="1" Grid.Column="2" x:Name="i_ii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="1" Grid.Column="2" x:Name="i_ii" Style="{StaticResource MyCheckBoxStyle}"
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="1" Grid.Column="3" x:Name="i_iii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="1" Grid.Column="3" x:Name="i_iii" Style="{StaticResource MyCheckBoxStyle}"
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="1" Grid.Column="4" x:Name="i_iv" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="1" Grid.Column="4" x:Name="i_iv" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="1" Grid.Column="5" x:Name="i_v" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="1" Grid.Column="5" x:Name="i_v" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="1" Grid.Column="6" x:Name="i_vi" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="1" Grid.Column="6" x:Name="i_vi" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
 
-        <CheckBox Grid.Row="2" Grid.Column="1" x:Name="ii_i" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="2" Grid.Column="1" x:Name="ii_i" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="2" Grid.Column="2" x:Name="ii_ii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="2" Grid.Column="2" x:Name="ii_ii" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="2" Grid.Column="3" x:Name="ii_iii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="2" Grid.Column="3" x:Name="ii_iii" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="2" Grid.Column="4" x:Name="ii_iv" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="2" Grid.Column="4" x:Name="ii_iv" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="2" Grid.Column="5" x:Name="ii_v" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="2" Grid.Column="5" x:Name="ii_v" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="2" Grid.Column="6" x:Name="ii_vi" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-
-        <CheckBox Grid.Row="3" Grid.Column="1" x:Name="iii_i" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-        <CheckBox Grid.Row="3" Grid.Column="2" x:Name="iii_ii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-        <CheckBox Grid.Row="3" Grid.Column="3" x:Name="iii_iii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-        <CheckBox Grid.Row="3" Grid.Column="4" x:Name="iii_iv" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-        <CheckBox Grid.Row="3" Grid.Column="5" x:Name="iii_v" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-        <CheckBox Grid.Row="3" Grid.Column="6" x:Name="iii_vi" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="2" Grid.Column="6" x:Name="ii_vi" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
 
-        <CheckBox Grid.Row="4" Grid.Column="1" x:Name="iv_i" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="3" Grid.Column="1" x:Name="iii_i" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="4" Grid.Column="2" x:Name="iv_ii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center"  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="3" Grid.Column="2" x:Name="iii_ii" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="4" Grid.Column="3" x:Name="iv_iii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="3" Grid.Column="3" x:Name="iii_iii" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="4" Grid.Column="4" x:Name="iv_iv" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center"  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="3" Grid.Column="4" x:Name="iii_iv" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="4" Grid.Column="5" x:Name="iv_v" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="3" Grid.Column="5" x:Name="iii_v" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="4" Grid.Column="6" x:Name="iv_vi" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-
-        <CheckBox Grid.Row="5" Grid.Column="1" x:Name="v_i" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-        <CheckBox Grid.Row="5" Grid.Column="2" x:Name="v_ii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-        <CheckBox Grid.Row="5" Grid.Column="3" x:Name="v_iii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-        <CheckBox Grid.Row="5" Grid.Column="4" x:Name="v_iv" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-        <CheckBox Grid.Row="5" Grid.Column="5" x:Name="v_v" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
-            <CheckBox.RenderTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
-        <CheckBox Grid.Row="5" Grid.Column="6" x:Name="v_vi" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="3" Grid.Column="6" x:Name="iii_vi" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
 
-        <CheckBox Grid.Row="6" Grid.Column="1" x:Name="vi_i" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="4" Grid.Column="1" x:Name="iv_i" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="6" Grid.Column="2" x:Name="vi_ii" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="4" Grid.Column="2" x:Name="iv_ii" Style="{StaticResource MyCheckBoxStyle}" 
+                   Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="6" Grid.Column="3" x:Name="vi_iii" VerticalAlignment="Center"  
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="4" Grid.Column="3" x:Name="iv_iii" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="6" Grid.Column="4" x:Name="vi_iv" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="4" Grid.Column="4" x:Name="iv_iv" Style="{StaticResource MyCheckBoxStyle}" 
+                   Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="6" Grid.Column="5" x:Name="vi_v" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20"  Margin="5,5,5,5" >
+        <CheckBox Grid.Row="4" Grid.Column="5" x:Name="iv_v" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Grid.Row="6" Grid.Column="6" x:Name="vi_vi" HorizontalAlignment="Center"  
+        <CheckBox Grid.Row="4" Grid.Column="6" x:Name="iv_vi" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+
+        <CheckBox Grid.Row="5" Grid.Column="1" x:Name="v_i" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox Grid.Row="5" Grid.Column="2" x:Name="v_ii" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox Grid.Row="5" Grid.Column="3" x:Name="v_iii" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox Grid.Row="5" Grid.Column="4" x:Name="v_iv" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox Grid.Row="5" Grid.Column="5" x:Name="v_v" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox Grid.Row="5" Grid.Column="6" x:Name="v_vi" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+
+        <CheckBox Grid.Row="6" Grid.Column="1" x:Name="vi_i" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox Grid.Row="6" Grid.Column="2" x:Name="vi_ii" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox Grid.Row="6" Grid.Column="3" x:Name="vi_iii" Style="{StaticResource MyCheckBoxStyle}"  
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox Grid.Row="6" Grid.Column="4" x:Name="vi_iv" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox Grid.Row="6" Grid.Column="5" x:Name="vi_v" Style="{StaticResource MyCheckBoxStyle}" 
+                  Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" >
+            <CheckBox.RenderTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox Grid.Row="6" Grid.Column="6" x:Name="vi_vi"  
                    Checked="checkbox_Clicked" Unchecked="checkbox_Clicked" MinWidth="20" Margin="5,5,5,5" >
             <CheckBox.RenderTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />

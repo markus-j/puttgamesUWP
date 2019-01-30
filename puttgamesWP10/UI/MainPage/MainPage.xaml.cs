@@ -595,6 +595,10 @@ namespace puttgamesWP10
         // all pivot items need to be created as well
         private bool NeedToshowProPackOffer()
         {
+            if (!defaultViewModel.ContainsKey(PlayerGroupName))
+            {
+                return false;
+            }
             var playerGroup = defaultViewModel[PlayerGroupName] as PlayerGroup;
 
             bool showOffer = false;
